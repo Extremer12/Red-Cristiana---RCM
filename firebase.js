@@ -5,15 +5,21 @@ import { getFirestore, doc, setDoc, getDoc, collection, addDoc, query, where, or
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics.js";
 
+// Configuración segura con variables de entorno
 const firebaseConfig = {
-  apiKey: "AIzaSyBAaSfb7OXs-ASX-61U4jAwyxHW2JQaEAQ",
-  authDomain: "red-cristiana---rcm.firebaseapp.com",
-  projectId: "red-cristiana---rcm",
-  storageBucket: "red-cristiana---rcm.firebasestorage.app",
-  messagingSenderId: "82612354001",
-  appId: "1:82612354001:web:9529fc95306c4119adbef0",
-  measurementId: "G-HZMNTJT5BY"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
+
+// Validación de configuración
+if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
+  throw new Error('❌ Configuración de Firebase incompleta. Verifica tu archivo .env');
+}
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
