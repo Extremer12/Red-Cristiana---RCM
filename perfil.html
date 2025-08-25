@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Perfil — Red Cristiana</title>
+
+  <!-- Tipografía -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Global estilos y específicos de perfil -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="perfil.css">
+
+  <!-- Feather icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">✝</div>
+        <div class="title">Red Cristiana</div>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" title="Cámara" aria-label="Cámara"><i data-feather="camera"></i></button>
+        <button class="icon-btn" title="Mensajes" aria-label="Mensajes"><i data-feather="message-circle"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <!-- Perfil cabecera: avatar grande + nombre -->
+      <section class="profile-header card" aria-label="Perfil">
+        <div class="profile-avatar-wrap">
+          <label id="avatarBtn" class="profile-avatar" title="Cambiar foto de perfil" for="avatarInput" aria-hidden="false">
+            <img id="avatarImg" src="https://i.pravatar.cc/200?u=you" alt="Avatar">
+            <div class="avatar-overlay">Cambiar</div>
+          </label>
+          <input id="avatarInput" type="file" accept="image/*" hidden>
+        </div>
+
+        <div class="profile-main">
+          <div class="name-row">
+            <input id="username" class="username" type="text" value="Tú" aria-label="Nombre de usuario" aria-describedby="usernameHelp" />
+            <button id="saveProfile" class="btn-primary" disabled>Guardar</button>
+          </div>
+
+          <!-- Help / reglas para username -->
+          <div id="usernameHelp" class="username-help">
+            Reglas: 3–30 caracteres. Sólo letras, números, puntos (.) y guiones bajos (_). Debe empezar y terminar con letra o número. No se permiten ".." ni "__".
+          </div>
+
+          <textarea id="profileBioInput" class="profile-bio-input" maxlength="160" placeholder="Añade una descripción breve (máx. 160 caracteres)"></textarea>
+
+          <div class="bio-row">
+            <div id="profileBio" class="profile-bio muted">Mi perfil — Aquí aparecen tus publicaciones y la galería</div>
+            <div class="bio-counter"><span id="bioCount">0</span>/160</div>
+          </div>
+
+          <div class="header-actions">
+            <button id="openGalleryBtn" class="btn-chip"><i data-feather="image"></i> Ver galería</button>
+            <a href="index.html" class="btn-chip"><i data-feather="chevron-left"></i> Volver</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Galería previa: muestra hasta 6 thumbs y botón Ver más -->
+      <section class="card gallery-preview" aria-label="Galería previa">
+        <div class="section-title">
+          <div>Galería</div>
+          <div id="galleryInfo" class="muted small">0 elementos</div>
+        </div>
+
+        <div id="galleryPreview" class="gallery-grid preview-grid" aria-live="polite" role="list"></div>
+
+        <div class="gallery-footer">
+          <button id="viewAllBtn" class="btn-chip" style="display:none"><i data-feather="chevron-right"></i> Ver todas</button>
+        </div>
+      </section>
+
+      <!-- Mis publicaciones (cards) -->
+      <section id="myPosts" class="card posts-section" aria-label="Mis publicaciones">
+        <div class="section-title"><div>Mis publicaciones</div></div>
+        <div id="postsList" class="posts-list" aria-live="polite"></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Bottom nav (réplica exacta del index) -->
+  <div class="bottom-nav" role="navigation" aria-label="Menú inferior">
+    <div class="nav-wrap">
+      <button class="nav-btn" data-action="home" aria-label="Inicio"><i data-feather="home"></i><div style="font-size:11px">Inicio</div></button>
+      <button class="nav-btn" data-action="search" aria-label="Buscar"><i data-feather="search"></i><div style="font-size:11px">Buscar</div></button>
+      <button class="nav-btn" data-action="create" aria-label="Crear"><i data-feather="plus-square"></i><div style="font-size:11px">Crear</div></button>
+      <button class="nav-btn active" data-action="profile" aria-label="Perfil"><i data-feather="user"></i><div style="font-size:11px">Perfil</div></button>
+    </div>
+  </div>
+
+  <!-- gallery modal -->
+  <div id="galleryModal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button id="closeGallery" class="close" aria-label="Cerrar">&times;</button>
+      <div id="galleryGrid" class="gallery-grid" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <!-- media modal (shared with actions.js) -->
+  <div id="mediaModal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button id="closeModal" class="close" aria-label="Cerrar">&times;</button>
+      <div id="modalMedia"></div>
+    </div>
+  </div>
+
+  <!-- scripts -->
+  <script src="actions.js" defer></script>
+  <script src="perfil.js" defer></script>
+  <script>feather.replace()</script>
+</body>
+</html>
