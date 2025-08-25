@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Red Cristiana — RCM</title>
+
+  <!-- Tipografía -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Estilos principales -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Feather icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+  <header>
+    <div class="topbar" role="banner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">✝</div>
+        <div class="title">Red Cristiana</div>
+      </div>
+
+      <div class="top-actions" role="toolbar" aria-label="Acciones superiores">
+        <button class="icon-btn" title="Cámara" aria-label="Cámara"><i data-feather="camera"></i></button>
+        <button class="icon-btn" title="Mensajes" aria-label="Mensajes"><i data-feather="message-circle"></i></button>
+      </div>
+    </div>
+
+    <section class="stories" aria-label="Historias">
+      <div class="stories-wrap" id="storiesWrap">
+        <div class="story add">
+          <label class="ring" for="storyInput" title="Añadir historia" style="cursor:pointer">
+            <i data-feather="plus" stroke-width="2"></i>
+          </label>
+          <input id="storyInput" type="file" accept="image/*,video/*" multiple hidden>
+          <div class="sr">Agregar historia</div>
+          <div style="font-size:12px;color:var(--muted)">Tu historia</div>
+        </div>
+        <!-- demo stories added by JS -->
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <div class="main-wrap">
+      <section class="composer" aria-label="Crear publicación">
+        <div class="row">
+          <div class="avatar">RC</div>
+          <textarea id="postText" placeholder="¿Qué estás pensando?" maxlength="600" aria-label="Escribe una publicación"></textarea>
+        </div>
+
+        <div class="actions">
+          <label class="btn-chip" for="photoInput"><i data-feather="image"></i> Foto</label>
+          <input id="photoInput" type="file" accept="image/*" multiple hidden>
+          <label class="btn-chip" for="videoInput"><i data-feather="video"></i> Video</label>
+          <input id="videoInput" type="file" accept="video/*" multiple hidden>
+
+          <div id="previewArea" class="preview-area" aria-live="polite"></div>
+
+          <button id="publishBtn" class="primary" disabled>Publicar</button>
+        </div>
+      </section>
+
+      <section id="feed"></section>
+    </div>
+  </main>
+
+  <div class="bottom-nav" role="navigation" aria-label="Menú inferior">
+    <div class="nav-wrap">
+      <button class="nav-btn active" data-action="home" aria-label="Inicio"><i data-feather="home"></i><div style="font-size:11px">Inicio</div></button>
+      <button class="nav-btn" data-action="search" aria-label="Buscar"><i data-feather="search"></i><div style="font-size:11px">Buscar</div></button>
+      <button class="nav-btn" data-action="create" aria-label="Crear"><i data-feather="plus-square"></i><div style="font-size:11px">Crear</div></button>
+      <button class="nav-btn" data-action="profile" aria-label="Perfil"><i data-feather="user"></i><div style="font-size:11px">Perfil</div></button>
+    </div>
+  </div>
+
+  <!-- Modal para visualización de media -->
+  <div id="mediaModal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button id="closeModal" class="close" aria-label="Cerrar">&times;</button>
+      <div id="modalMedia"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="actions.js"></script>
+</body>
+</html>
